@@ -35,4 +35,27 @@ describe('Generic', () => {
 
         expect(create<boolean>(true)).toBe(true);
     });
+
+    class Entry<K, V> {
+        constructor(public key: K, public value: V) {}
+    }
+
+    class Triple<K, V, T> {
+        constructor(public f: K, public s: V, public t: T) {}
+    }
+
+    it('should support multiple generic', () => {
+        const entry = new Entry<string, string>("PACMAN","AUR");
+        expect(typeof entry.key).toBe("string");
+        expect(typeof entry.value).toBe("string");
+
+        const tree = new Triple<boolean, number, string>(
+            true, 123, "MM"
+        );
+
+        expect(typeof tree.f).toBe("boolean");
+        expect(typeof tree.s).toBe("number");
+        expect(typeof tree.t).toBe("string");
+
+    });
 });
