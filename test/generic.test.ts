@@ -68,7 +68,7 @@ describe('Generic', () => {
         expect(typeof ent.value).toBe("string");
     });
 
-    class SimGen<T> {
+    class SimGen<T = number> {
         private data?: T;
 
         setData(data: T): void {
@@ -81,7 +81,7 @@ describe('Generic', () => {
     }
 
     it('should not support optional generic', () => {
-        const sim = new SimGen();
+        const sim = new SimGen<string>();
         sim.setData("ST");
         // sim.setData(11);
         // sim.setData(true);
