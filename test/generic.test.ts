@@ -37,15 +37,17 @@ describe('Generic', () => {
     });
 
     class Entry<K, V> {
-        constructor(public key: K, public value: V) {}
+        constructor(public key: K, public value: V) {
+        }
     }
 
     class Triple<K, V, T> {
-        constructor(public f: K, public s: V, public t: T) {}
+        constructor(public f: K, public s: V, public t: T) {
+        }
     }
 
     it('should support multiple generic', () => {
-        const entry = new Entry<string, string>("PACMAN","AUR");
+        const entry = new Entry<string, string>("PACMAN", "AUR");
         expect(typeof entry.key).toBe("string");
         expect(typeof entry.value).toBe("string");
 
@@ -64,5 +66,26 @@ describe('Generic', () => {
 
         expect(typeof ent.key).toBe("number");
         expect(typeof ent.value).toBe("string");
+    });
+
+    class SimGen<T> {
+        private data?: T;
+
+        setData(data: T): void {
+            this.data = data;
+        }
+
+        getData(): T | undefined {
+            return this.data;
+        }
+    }
+
+    it('should not support optional generic', () => {
+        const sim = new SimGen();
+        sim.setData("ST");
+        // sim.setData(11);
+        // sim.setData(true);
+
+        expect(sim.getData()!.toUpperCase()).toBe("ST");
     });
 });
