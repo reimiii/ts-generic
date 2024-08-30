@@ -116,4 +116,31 @@ describe('Generic', () => {
         // selain turunan Employee ga boleh dipake... batasi tipe generic
         console.info(emp1);
     });
+
+    it('should support array', () => {
+        const names = new Array<string>()
+        names.push("Mee");
+        names.push("Kaan")
+        console.info(names)
+    });
+
+    it('should support set', () => {
+        const num = new Set<number>();
+        num.add(1);
+        num.add(2);
+        num.add(2);
+        num.add(2);
+
+        expect(num.size).toBe(2);
+
+        console.info(num);
+    });
+
+    it('should support map', () => {
+        const env = new Map<string, string>();
+        env.set("PATH", "PACMAN");
+
+        expect(env.get("PATH")).toBe("PACMAN");
+        console.info(env);
+    });
 });
