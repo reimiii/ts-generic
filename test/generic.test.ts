@@ -143,4 +143,27 @@ describe('Generic', () => {
         expect(env.get("PATH")).toBe("PACMAN");
         console.info(env);
     });
+
+    async function fetchData(v: string):Promise<string> {
+        return new Promise<string>((resolve, reject) => {
+            setTimeout(() => {
+                if (v === "me") {
+                    resolve(`hello ${v}`);
+                } else {
+                    reject("not found");
+                }
+            }, 1000);
+        });
+    }
+
+    it('should support promise', async () => {
+       const res = await fetchData("me");
+       expect(res.toUpperCase()).toBe("HELLO ME");
+
+       try {
+           await fetchData("MAKI");
+       } catch (e) {
+           expect(e).toBe("not found");
+       }
+    });
 });
