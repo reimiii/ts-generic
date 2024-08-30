@@ -58,4 +58,11 @@ describe('Generic', () => {
         expect(typeof tree.t).toBe("string");
 
     });
+
+    it('should optional generic type', () => {
+        const ent = new Entry(1, "pacman");
+
+        expect(typeof ent.key).toBe("number");
+        expect(typeof ent.value).toBe("string");
+    });
 });
