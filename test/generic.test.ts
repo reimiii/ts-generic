@@ -88,4 +88,32 @@ describe('Generic', () => {
 
         expect(sim.getData()!.toUpperCase()).toBe("ST");
     });
+
+    interface Employee {
+        id: number;
+        name: string;
+    }
+
+    interface Manager extends Employee {
+        totalEmp: number;
+    }
+
+    interface VP extends Manager {
+        totalMng: number;
+    }
+
+    class DataEmp<T extends Employee> {
+        constructor(public t: T) {
+        }
+    }
+
+    it('should generic constrain', () => {
+        const emp1 = new DataEmp<Employee>({
+            id: 1,
+            name: "strong",
+        });
+
+        // selain turunan Employee ga boleh dipake... batasi tipe generic
+        console.info(emp1);
+    });
 });
